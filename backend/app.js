@@ -18,6 +18,8 @@ app.use((req, res, next) => {
 	next();
 });
 
+app.use(express.json());
+
 app.use((req, res) => {
 	res.status(200).json({ message: "Requête reçue !" });
 });
