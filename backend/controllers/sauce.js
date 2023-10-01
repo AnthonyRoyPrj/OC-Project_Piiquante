@@ -17,7 +17,6 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 exports.createSauce = (req, res, next) => {
-    console.log(req);
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
     delete sauceObject._userId;
@@ -94,7 +93,6 @@ exports.likeSauce = (req, res, next) => {
                     .then(() => res.status(200).json({ message: "Sauce disliked !" }))
                     .catch(error => res.status(401).json({ error }));
             } else {
-                console.log(req.body.userId);
                 if (sauce.usersLiked.includes(req.body.userId)) {
                     sauce.likes -= 1
                     sauce.usersLiked.splice(sauce.usersLiked.indexOf(req.body.userId));
@@ -106,7 +104,6 @@ exports.likeSauce = (req, res, next) => {
                     .then(() => res.status(200).json({ message: "Vote annulé !" }))
                     .catch(error => res.status(401).json({ error }));
             }
-            console.log(sauce);
         })
         .catch(error => res.status(500).json({ error }))
 };
